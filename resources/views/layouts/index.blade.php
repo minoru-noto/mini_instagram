@@ -23,11 +23,11 @@
     <div id="app">
         
         @auth
-        <nav class="navbar navbar-expand-md navbar-light bg-white w-50 mx-auto mt-3 border-bottom pb-3">
+        <nav class="navbar navbar-expand-md navbar-light bg-white w-50 mx-auto mt-3 ">
             <div class="container">
                 
                 <div class="">
-                    <a class="navbar-brand" href="{{ url('/postItem') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{asset('img/logo_02.png')}}" class="rounded" alt="..." style="width:120px;height:50px;">
                     </a>
                 </div>
@@ -61,7 +61,9 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    <a class="dropdown-item" href="{{ route('postItem.create') }}">
+                                    <a class="dropdown-item" href="{{ route('postItem.create') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                         投稿する
                                     </a>
 
@@ -85,7 +87,7 @@
         </nav>
         @endauth
 
-        <main class="w-50 mx-auto bg-white ">
+        <main class="">
             @yield('content')
         </main>
     </div>

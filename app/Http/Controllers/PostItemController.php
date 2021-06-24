@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PostItem;
+use App\User;
+
 
 class PostItemController extends Controller
 {
@@ -13,7 +16,14 @@ class PostItemController extends Controller
      */
     public function index()
     {
-        //
+        
+        $postItems = PostItem::all();
+        $postItems->load('user');
+        
+        return view('page.postItem.index',[
+            'postItems' => $postItems
+            ]);
+        
     }
 
     /**
@@ -23,7 +33,11 @@ class PostItemController extends Controller
      */
     public function create()
     {
-        //
+        
+        
+        return view('page.postItem.create');
+        
+        
     }
 
     /**
@@ -34,7 +48,28 @@ class PostItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // dd($request->all());
+        
+        $postItem = new PostItem();
+        
+        $postItem->comment = $request->input('comment');
+        $postItem->user_id = $request->input('user_id');
+
+
+        $fileName = $request->file('img_url')->getClientOriginalName();
+
+        $request->file('img_url')->storeAs('public/image/',$fileName);
+
+        $fullFilePath = '/storage/image/'. $fileName;
+
+        $postItem->img_url = $fullFilePath;
+        
+
+        $postItem->save();
+        
+        return redirect(route('postItem.create'))->with('post_success','投稿しました');
+        
     }
 
     /**

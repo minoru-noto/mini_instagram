@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
 @section('content')
 <div class="container mt-5">
@@ -81,7 +81,7 @@
             <div class="form-group row mb-2">
                 <div class=" col-md-6 offset-md-3">
                     <button type="submit" class="btn btn-primary w-100">
-                            続行
+                        登録
                     </button>
                 </div>
             </div>
@@ -92,7 +92,7 @@
 
         <div class="w-50 mx-auto mb-5 mt-5">
             <p class="text-muted text-center">アカウントをお持ちではありませんか？</p>
-            <p class="text-center"><a href="{{ route('login') }}" class="text-success">ログイン</a></p>
+            <p class="text-center"><a href="{{ route('login') }}" class="">ログイン</a></p>
         </div>
         
         

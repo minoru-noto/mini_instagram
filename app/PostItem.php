@@ -13,12 +13,14 @@ class PostItem extends Model
      * @var array
      */
     protected $fillable = [
-        'img_url', 'comment', 'user_id',
+        'img_url', 'comment', 'user_id','created_at',
     ];
+    
+     protected $table = 'post_item';
     
     public function user()
     {
-        return $this->belongsTo('App\Models\User','user_id','id');
+        return $this->belongsTo('App\User','user_id','id');
     }
     
     

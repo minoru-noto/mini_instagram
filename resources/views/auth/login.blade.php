@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
 @section('content')
 <div class="container mt-5">
@@ -80,7 +80,7 @@
 
         <div class="w-50 mx-auto mb-5 mt-5">
             <p class="text-muted text-center">アカウントをお持ちではありませんか？</p>
-            <p class="text-center"><a href="{{ route('register') }}" class="text-success">アカウント</a></p>
+            <p class="text-center"><a href="{{ route('register') }}" class="">アカウント</a></p>
         </div>
         
         
