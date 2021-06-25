@@ -83,7 +83,13 @@ class PostItemController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $postItem = PostItem::where('id',$id)->first();
+        
+        return view('page.postItem.show',[
+            'postItem' => $postItem
+            ]);
+        
     }
 
     /**

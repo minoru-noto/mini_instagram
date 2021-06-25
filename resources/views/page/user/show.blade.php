@@ -16,21 +16,26 @@
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                     
                 <a class="dropdown-item" href="{{ route('postItem.create') }}">
-                    投稿する
+                    <i class="fas fa-camera-retro"></i>  投稿する
                 </a>
                 
             </div>
         </diV>
         
+        @if(Auth::user()->id == $user->id)
         <div class="col-md-1 pt-3">
             <a href="#" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre class=""><i class="fas fa-cog text-dark"></i></a>
             
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                
+                <a class="dropdown-item" href="{{ route('user.create') }}">
+                    <i class="fas fa-user-alt"></i>  アカウント設定
+                </a>
                
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                    ログアウトする
+                    <i class="fas fa-sign-out-alt"></i>  ログアウトする
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -40,6 +45,8 @@
             </div>
             
         </div>
+        @endif
+        
     </div>
     
 </div>
@@ -49,7 +56,7 @@
               
             @foreach($postItems as $postItem)
             <div class="col-md-4">
-              <img src="{{asset($postItem->img_url)}}" width="227px" height="200px" alt="" class="border">
+              <a href="{{route('postItem.show',$postItem->id)}}"><img src="{{asset($postItem->img_url)}}" width="227px" height="200px" alt="" class="border"></a>
             </div>
             @endforeach
             
