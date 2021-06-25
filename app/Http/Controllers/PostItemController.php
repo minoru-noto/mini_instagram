@@ -123,6 +123,10 @@ class PostItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        PostItem::destroy($id);
+        
+        return redirect(route('postItem.index'));
+        
     }
 }

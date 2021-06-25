@@ -24,7 +24,19 @@
               </div>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="{{route('user.show',$postItem->user_id)}}">アカウント情報</a>
+                 @if( Auth::user()->id != $postItem->user_id )
                 <a class="dropdown-item" href="#">メッセージを送る</a>
+                @endif
+                
+                @if( Auth::user()->id == $postItem->user_id )
+                <form action="{{route('postItem.destroy',$postItem->id)}}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div>
+                        <button class="dropdown-item text-danger">投稿を削除する</button>
+                    </div>
+                </form>
+                @endif
                 @if( Auth::user()->id != $postItem->user_id )
                 <a class="dropdown-item text-danger" href="#">フォローをやめる</a>
                 @endif

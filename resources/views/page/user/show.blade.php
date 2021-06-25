@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="pt-3 pl-3 pr-3 border-bottom pb-5">
+<div class="pt-3　 pl-3 pr-3 border-bottom pb-5">
     
     <div class="row">
         <div class="offset-md-1 col-md-2">
@@ -51,7 +51,7 @@
     
 </div>
 
-        <div class="container p-0">
+        <div class="container p-0 pb-3">
           <div class="row w-100">
               
             @foreach($postItems as $postItem)
