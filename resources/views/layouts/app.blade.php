@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white w-50 mx-auto mt-3 border-bottom pb-3">
             <div class="container ">
                 
-                <div class="w-100" style="margin-left:230px;">
+                <div class="w-100" style="">
                     <a class="navbar-brand" href="{{ url('/postItem') }}">
                         <img src="{{asset('img/logo_02.png')}}" class="rounded" alt="..." style="width:120px;height:50px;">
                     </a>
@@ -42,21 +42,33 @@
                     <!--</ul>-->
 
                     <!-- Right Side Of Navbar -->
-                    <!--<ul class="navbar-nav ml-auto">-->
-                        <!-- Authentication Links -->
-                    <!--    @guest-->
-                    <!--        <li class="nav-item">-->
-                    <!--            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>-->
-                    <!--        </li>-->
-                    <!--        @if (Route::has('register'))-->
-                    <!--            <li class="nav-item">-->
-                    <!--                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>-->
-                    <!--            </li>-->
-                    <!--        @endif-->
-                    <!--    @else-->
+                    <ul class="navbar-nav ml-auto mr-5">
+                         <li class="nav-item dropdown">
+                             <a href="#" id="navbarDropdown_t" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="far fa-user text-dark"></i></a>
+                             
+                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                    
+                                <a class="dropdown-item" href="{{ route('user.show',Auth::user()->id) }}">
+                                    <i class="far fa-user-circle"></i>  プロフィール
+                                </a>
+                                <a class="dropdown-item" href="{{ route('postItem.create') }}">
+                                    <i class="fas fa-camera-retro"></i>  投稿する
+                                </a>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i>  ログアウトする
+                                </a>
+                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                
+                            </div>
                             
-                    <!--    @endguest-->
-                    <!--</ul>-->
+                         </li>
+                         
+                    </ul>
                 </div>
             </div>
         </nav>
