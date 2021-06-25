@@ -28,7 +28,7 @@
             
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                 
-                <a class="dropdown-item" href="{{ route('user.create') }}">
+                <a class="dropdown-item" href="{{ route('user.edit',$user->id) }}">
                     <i class="fas fa-user-alt"></i>  アカウント設定
                 </a>
                

@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -67,7 +67,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $user = User::where('id',$id)->first();
+        
+        return view('page.user.create',[
+            'user' => $user
+            ]);
+        
     }
 
     /**
@@ -79,7 +85,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // dd($request);
+        
+        $user = User::find($id);
+        
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->update();
+        
+        return redirect(route('user.show',$id));
+        
     }
 
     /**
