@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PostItem;
 use App\Comment;
-use App\User;
+use App\PostItem;
 
-
-class PostItemController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +15,7 @@ class PostItemController extends Controller
      */
     public function index()
     {
-        
-        $postItems = PostItem::orderBy('created_at','desc')->get();
-        $postItems->load('user','comments');
-        
-        // dd($postItems);
-        
-        return view('page.postItem.index',[
-            'postItems' => $postItems
-            ]);
-        
+        //
     }
 
     /**
@@ -36,11 +25,7 @@ class PostItemController extends Controller
      */
     public function create()
     {
-        
-        
-        return view('page.postItem.create');
-        
-        
+        //
     }
 
     /**
@@ -51,27 +36,16 @@ class PostItemController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         
-        // dd($request->all());
+        $comments = new Comment();
         
-        $postItem = new PostItem();
+        $comments->content = $request->input('content');
+        $comments->user_id = $request->input('user_id');
+        $comments->post_item_id = $request->input('post_item_id');
+        $comments->save();
         
-        $postItem->comment = $request->input('comment');
-        $postItem->user_id = $request->input('user_id');
-
-
-        $fileName = $request->file('img_url')->getClientOriginalName();
-
-        $request->file('img_url')->storeAs('public/image/',$fileName);
-
-        $fullFilePath = '/storage/image/'. $fileName;
-
-        $postItem->img_url = $fullFilePath;
-        
-
-        $postItem->save();
-        
-        return redirect(route('postItem.create'))->with('post_success','投稿しました');
+        return redirect(route('comment.show',$request->post_item_id));
         
     }
 
@@ -83,7 +57,18 @@ class PostItemController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        
+        $comments = Comment::where('post_item_id',$id)->get();
+        $comments->load('user');
+        
+        $postItem = PostItem::where('id',$id)->first();
+        
+        return view('page.comment.show',[
+                'id' => $id,
+                'comments' => $comments,
+                'postItem' => $postItem
+            ]);
     }
 
     /**

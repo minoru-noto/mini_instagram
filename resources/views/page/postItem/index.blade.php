@@ -26,7 +26,9 @@
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="#">アカウント情報</a>
                 <a class="dropdown-item" href="#">メッセージを送る</a>
+                @if( Auth::user()->id != $postItem->user_id )
                 <a class="dropdown-item text-danger" href="#">フォローをやめる</a>
+                @endif
               </div>
           </div>
           
@@ -34,10 +36,13 @@
       <img src="{{ asset($postItem->img_url) }}" width="100%" height="500px">
       <div class="card-body">
         <div class="d-flex mb-2">
-            <a href="#" class="mr-3"><i class="fas fa-heart text-dark"></i></a>
-            <a href="#" class=""><i class="far fa-comment text-dark"></i></a>
+            <a href="#" class="mr-3"><i class="far fa-heart text-dark"></i></a>
+             @if( Auth::user()->id != $postItem->user_id )
+            <a href="{{route('comment.show',$postItem->id)}}" class=""><i class="far fa-comment text-dark"></i></a>
+            @endif
         </div>
         <p class="card-text">@<strong><a href="#">{{$postItem->user->name}}</a></strong>  {{ $postItem->comment }}</p>
+        <p><a href="{{route('comment.show',$postItem->id)}}">{{ count($postItem->comments)}}件のコメントとやりとり</a></p>
         <p class="card-text"><small class="text-muted">{{$postItem->created_at->format('Y年m月d日')}}</small></p>
       </div>
     </div>

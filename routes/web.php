@@ -21,5 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('postItem', 'PostItemController');
     
+    Route::resource('comment', 'CommentController');
+    
 });
 
