@@ -23,5 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('comment', 'CommentController');
     
+    Route::resource('user', 'UserController');
+    
 });
 

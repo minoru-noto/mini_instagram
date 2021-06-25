@@ -24,7 +24,7 @@
                   <a><i class="fas fa-ellipsis-h fa-2x"></i></a>
               </div>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">アカウント情報</a>
+                <a class="dropdown-item" href="{{route('user.show',$postItem->user_id)}}">アカウント情報</a>
                 <a class="dropdown-item" href="#">メッセージを送る</a>
                 @if( Auth::user()->id != $postItem->user_id )
                 <a class="dropdown-item text-danger" href="#">フォローをやめる</a>
