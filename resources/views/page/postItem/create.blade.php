@@ -19,7 +19,7 @@
     <div class="form-group">
         <label for="exampleFormControlFile1">投稿写真を選択</label>
         <input name="img_url" type="file" class="form-control-file" id="file-sample">
-        <img id="file-preview" class="mt-3" style="width:400px;height:300px;">
+        <img id="file-preview" class="mt-3" style="width:350px;height:300px;">
       </div>
     
       <div class="form-group">

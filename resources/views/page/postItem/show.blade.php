@@ -10,7 +10,7 @@
           <div class="col-md-6">
               <div class="row p-2">
                 <div class="offset-md-1 col-md-2">
-                    <img src="{{asset('img/user_02.jpg')}}" alt="" width="45px" height="45px" class="rounded-circle">
+                    <img src="{{asset($postItem->user->img_url)}}" alt="" width="45px" height="45px" class="rounded-circle">
                 </div>
                 <div class="col-md-7 mt-2">
                     <p class="">{{$postItem->user->name}}</p>

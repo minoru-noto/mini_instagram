@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="pt-3　 pl-3 pr-3 border-bottom pb-5">
+<div class="pt-3 pl-3 pr-3 border-bottom pb-5">
     
     <div class="row">
         <div class="offset-md-1 col-md-2">
-            <img src="{{asset('img/user_02.jpg')}}" alt="" width="80px" height="80px" class="rounded-circle">
+            <img src="{{asset($user->img_url)}}" alt="" width="80px" height="80px" class="rounded-circle">
         </div>
         <div class="col-md-2 ml-3 pt-3">
             <h5>{{$user->name}}</h5>

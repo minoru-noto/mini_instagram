@@ -23,7 +23,7 @@
         <!--    </div>-->
         <!--</div>-->
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
             
             <div class="form-group row">
@@ -75,6 +75,25 @@
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="確認用パスワード">
                 </div>
             </div>
+    
+    
+            <div class="form-group row">
+                <label for="password-confirm" class="offset-md-4 col-form-label text-md-right">アイコン写真を設定してください</label>
+            </div>
+            
+            
+            <div class="form-group row">
+                <label for="exampleFormControlFile1" class="col-md-3 col-form-label text-md-right"></label>
+                <div class="col-md-6">
+                    <input name="img_url" type="file" class="form-control-file" id="file-sample">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="mb-4 offset-md-4">
+                    <img id="file-preview" width="250px" height="250px">
+                </div>
+            </div>
 
         
 
@@ -100,6 +119,24 @@
     </div>
 </div>
 
+<script>
+    document.getElementById('file-sample').addEventListener('change', function (e) {
+   
+    var file = e.target.files[0];
+   
+    var fileReader = new FileReader();
+    
+    fileReader.onload = function() {
+    
+        var dataUri = this.result;
+
+        var img = document.getElementById('file-preview');
+        img.src = dataUri;
+    }
+
+    fileReader.readAsDataURL(file);
+});
+</script>
 
 @endsection
 
